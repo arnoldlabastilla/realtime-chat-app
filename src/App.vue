@@ -12,6 +12,11 @@ export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+
+  mounted() {
+    window.Echo.channel('events')
+      .listen('RealTimeMessage', (e) => console.log('RealTimeMessage: ' + e.message));
   }
 }
 </script>

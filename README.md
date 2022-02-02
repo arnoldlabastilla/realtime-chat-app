@@ -5,6 +5,14 @@
 npm install
 ```
 
+### Compiles required dependencies
+```
+npm install laravel-echo@1.9.0
+```
+```
+npm install pusher-js@7.0.1
+```
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
