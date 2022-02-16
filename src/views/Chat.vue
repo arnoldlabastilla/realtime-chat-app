@@ -1,13 +1,15 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
+    <h1>Real-time Chat</h1>
 
-    <input type="text" v-model="content" v-on:keyup.enter="send" />
+    <div class="input-container">
+      <input type="text" v-model="content" v-on:keyup.enter="send" />
+    </div>
 
     <template v-if="messages.length">
       <div v-for="message in messages" :key="`message-${message.id}`">
         <div class="message">
-          <div class="sender">{{ message.sender.name }}</div>
+          <div class="sender">{{ message.sender.email == email ? 'Me' : message.sender.name }}:</div>
           <div class="content">{{ message.content }}</div>
         </div>
       </div>
@@ -26,11 +28,13 @@ export default {
   data() {
     return {
       messages: [],
-      content: ''
+      content: '',
+      email: ''
     }
   },
 
   created() {
+    this.email = localStorage.getItem('email')
     this.load()
   },
 
@@ -65,27 +69,9 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-
-input {
-  margin: 0 0 0.5rem 0;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-color: #fff;
-  border-color: #6b7280;
-  border-width: 1px;
-  border-radius: 10px;
-  padding-top: 0.5rem;
-  padding-right: 0.75rem;
-  padding-bottom: 0.5rem;
-  padding-left: 0.75rem;
-  font-size: 1rem;
-  line-height: 1.5rem;
+h1 {
+  text-align: center;
 }
 
 .message {
